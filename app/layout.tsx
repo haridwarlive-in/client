@@ -27,34 +27,45 @@ export default function RootLayout({
       <body className={poppins.className}>
         <Navbar/>
         <main>{children}</main>
-        <footer className="bg-[#343333] text-yellow-500 py-12">
+        <footer className="relative bg-[#343333] text-yellow-300 pt-8 pb-16">
           <div className="container mx-auto px-4">
             {/* Footer Content */}
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="flex flex-col md:grid md:grid-cols-4 gap-8">
               {/* About Section */}
-              <div>
+              <div className='col-span-2'>
                 <h3 className="text-xl font-bold mb-4">haridwarlive.in</h3>
-                <p className="text-yellow-400">
+                <p className="text-yellow-300">
                   Discover the spiritual essence of India in Haridwar, where the holy Ganges descends from the Himalayas.
                 </p>
+                
               </div>
 
               {/* Quick Links Section */}
               <div>
-                <h3 className="text-xl text-center font-bold mb-4">Quick Links</h3>
-                <ul className="space-y-2 text-center text-yellow-400">
+                <h3 className="text-xl md:text-center font-bold mb-4">Quick Links</h3>
+                <ul className="space-y-2 text-left md:mx-auto w-fit text-yellow-300">
                   <li>
-                    <Link href="/hotels" className="hover:text-yellow-500 transition-colors">
+                    <Link href="/hotels" className="hover:text-yellow-300 transition-colors">
+                      About
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/hotels" className="hover:text-yellow-300 transition-colors">
                       Hotels
                     </Link>
                   </li>
                   <li>
-                    <Link href="/news" className="hover:text-yellow-500 transition-colors">
-                      News
+                    <Link href="/news" className="hover:text-yellow-300 transition-colors">
+                      Latest Updates
                     </Link>
                   </li>
                   <li>
-                    <Link href="/contact" className="hover:text-yellow-500 transition-colors">
+                    <Link href="/news" className="hover:text-yellow-300 transition-colors">
+                      Temples
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/contact" className="hover:text-yellow-300 transition-colors">
                       Contact
                     </Link>
                   </li>
@@ -64,30 +75,30 @@ export default function RootLayout({
               {/* Connect With Us Section */}
               <div>
                 <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
-                <p className="text-yellow-400">
-                  Email: <a href="mailto:info@haridwar-tourism.com" className="hover:text-yellow-500">info@haridwar-tourism.com</a>
+                <p className="text-yellow-300">
+                  Email: <a href="mailto:info@haridwar-tourism.com" className="hover:text-yellow-300">info@haridwar-tourism.com</a>
                   <br />
-                  Phone: <a href="tel:+911234567890" className="hover:text-yellow-500">+91 1234567890</a>
+                  Phone: <a href="tel:+911234567890" className="hover:text-yellow-300">+91 1234567890</a>
                 </p>
                 {/* Social Media Icons */}
                 <div className="flex space-x-4 mt-4">
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-500 transition-colors">
+                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
                     <Facebook className="h-6 w-6" />
                   </a>
-                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-500 transition-colors">
+                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
                     <Twitter className="h-6 w-6" />
                   </a>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-500 transition-colors">
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
                     <Instagram className="h-6 w-6" />
                   </a>
                 </div>
               </div>
             </div>
+            
+          </div>
 
-            {/* Footer Bottom */}
-            <div className="border-t border-yellow-400 mt-8 pt-8 text-center text-yellow-400">
-              <p>&copy; {new Date().getFullYear()} haridwarlive.in. All rights reserved.</p>
-            </div>
+          <div className="w-full mx-auto py-2 absolute bottom-0 left-0 right-0 bg-black px-4 text-thin text-sm text-center text-yellow-300">
+            <p>&copy; {new Date().getFullYear()} haridwarlive.in. All rights reserved.</p>
           </div>
         </footer>
 

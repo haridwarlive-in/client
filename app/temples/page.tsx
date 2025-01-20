@@ -3,25 +3,24 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "lucide-react";
+import { MapPin } from "lucide-react";
 
-const news = [
-  // Generate 30 news items dynamically
+const temples = [
+  // Generate 30 temple items dynamically
   ...Array(30).fill(0).map((_, index) => ({
-    title: `News Article ${index + 1}`,
-    date: new Date(2024, 2, 20 - index).toISOString(), // Dynamic date
-    category: ["Events", "Festival", "Tourism"][index % 3], // Rotate categories
-    content: `This is a brief description of News Article ${index + 1}. Stay updated with the latest.`,
-    image: `https://plus.unsplash.com/premium_photo-1688561383203-31fed3d85417?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`,
+    name: `Temple ${index + 1}`,
+    location: `Location ${index + 1}`,
+    description: `Temple ${index + 1} is a sacred site known for its spiritual significance and beautiful architecture.`,
+    image: `https://plus.unsplash.com/premium_photo-1691030925370-f31017a5aca1?q=80&w=2836&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`,
   })),
 ];
 
-export default function News() {
+export default function Temples() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
-  const totalPages = Math.ceil(news.length / itemsPerPage);
+  const totalPages = Math.ceil(temples.length / itemsPerPage);
 
-  const paginatedNews = news.slice(
+  const paginatedTemples = temples.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -40,29 +39,26 @@ export default function News() {
     <div className="min-h-screen bg-gray-50 py-32">
       <div className="container mx-auto px-4">
         <h1 className="text-4xl max-md:text-3xl border-l-yellow-300 py-6 px-8 border-l-4 mb-8">
-          Latest News from <span className="font-bold">Haridwar</span>
+          Temples of <span className="font-bold">Haridwar</span>
         </h1>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {paginatedNews.map((item, index) => (
+          {paginatedTemples.map((temple, index) => (
             <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
               <img
-                src={item.image}
-                alt={item.title}
+                src={temple.image}
+                alt={temple.name}
                 className="w-full h-48 object-cover"
                 loading="lazy"
               />
               <CardHeader>
-                <div className="flex items-center text-sm text-gray-500 mb-2">
-                  <Calendar className="h-4 w-4 mr-2" />
-                  <span>{new Date(item.date).toLocaleDateString()}</span>
+                <CardTitle>{temple.name}</CardTitle>
+                <div className="flex items-center text-gray-500 text-sm mt-2">
+                  <MapPin className="h-4 w-4 mr-2" />
+                  <span>{temple.location}</span>
                 </div>
-                <CardTitle>{item.title}</CardTitle>
-                <span className="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded">
-                  {item.category}
-                </span>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">{item.content}</p>
+                <p className="text-gray-600">{temple.description}</p>
               </CardContent>
             </Card>
           ))}

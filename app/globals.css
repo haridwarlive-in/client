@@ -86,3 +86,10 @@ html {
     @apply scroll-smooth;
   }
 }
+
+.dot-bg{
+  background-color: #ffffff;
+  opacity: 1;
+  background-image: radial-gradient(#fcd40c 1.5px, #ffffff 1.5px);
+  background-size: 30px 30px;
+}
