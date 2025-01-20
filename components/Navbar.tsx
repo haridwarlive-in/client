@@ -4,11 +4,11 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "./ui/button";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const router = useRouter();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   let pathname = usePathname();
   pathname = pathname.split("/")[1];
@@ -22,6 +22,11 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Toggle the mobile menu
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+  };
 
   return (
     <header
@@ -43,46 +48,84 @@ const Navbar = () => {
       </div>
 
       {/* Links Section */}
-      <nav className={`${
-        isScrolled ? "bg-[#343333]" : "bg-transparent"
-      }`}>
-        <div className="container mx-auto px-4 py-2">
-            <div className="hidden transition-all duration-300 md:flex flex-row gap-6 justify-center">
-              {["/", "/temples", "/hotels", "/news", "/contact"].map((path, index) => (
-                <Link
-                  key={index}
-                  href={path}
-                  className={`transition-all duration-300 hover:underline ${
-                    "/" + pathname === "/"
-                      ? isScrolled ? 
-                        "/" + pathname === path
-                          ? "text-yellow-500 font-bold"
-                          : "text-white"
-                        : "/" + pathname === path
-                          ? "text-yellow-500 font-bold"
-                          : "text-white"
-                        
-                      : isScrolled ? 
-                        "/" + pathname === path
-                          ? "text-yellow-500 font-bold"
-                          : "text-white"
-                        : "/" + pathname === path
-                          ? "text-yellow-500 font-bold"
-                          : "text-black"
-                  }`}
-                >
-                  {path === "/"
-                    ? "Home"
-                    : path.charAt(1).toUpperCase() + path.slice(2)}
-                </Link>
-              ))}
-            </div>
-            <div className="md:hidden">
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
-              </Button>
-            </div>
+      <nav
+        className={`${
+          isScrolled ? "bg-[#343333]" : "bg-transparent"
+        } transition-all duration-300`}
+      >
+        <div className={`container mx-auto px-4 py-2 flex justify-between items-center ${
+          isMobileMenuOpen? 'bg-[#343333]' : 'transparent'
+        }`}>
+          <div className={`${
+            isScrolled? 'hidden' : 'block'
+          }`}></div>
+
+          <div className={`text-md font-thin text-yellow-300 ${
+            isScrolled? 'block' : 'hidden'
+          }`}>haridwarlive.in</div>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex flex-row gap-6 justify-center">
+            {["/", "/temples", "/hotels", "/news", "/contact"].map((path, index) => (
+              <Link
+                key={index}
+                href={path}
+                className={`transition-all duration-300 hover:underline ${
+                  "/" + pathname === path
+                    ? "text-yellow-300 font-bold"
+                    : isScrolled
+                    ? "text-white"
+                    : "text-black"
+                }`}
+              >
+                {path === "/"
+                  ? "Home"
+                  : path.charAt(1).toUpperCase() + path.slice(2)}
+              </Link>
+            ))}
           </div>
+
+          {/* Mobile Menu Toggle */}
+          <div className="md:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleMobileMenu}
+              aria-label="Toggle mobile menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6 text-white" />
+              ) : (
+                <Menu className="h-6 w-6 text-yellow-300" />
+              )}
+            </Button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-[#343333] pb-6">
+            <ul className="flex flex-col items-center gap-4 py-4">
+              {["/", "/temples", "/hotels", "/news", "/contact"].map((path, index) => (
+                <li key={index}>
+                  <Link
+                    href={path}
+                    onClick={() => setIsMobileMenuOpen(false)} // Close menu on link click
+                    className={`block text-lg transition-all duration-300 hover:underline ${
+                      "/" + pathname === path
+                        ? "text-yellow-500 font-bold"
+                        : "text-white"
+                    }`}
+                  >
+                    {path === "/"
+                      ? "Home"
+                      : path.charAt(1).toUpperCase() + path.slice(2)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </nav>
     </header>
   );
