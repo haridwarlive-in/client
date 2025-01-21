@@ -102,7 +102,7 @@ const Navbar = () => {
                 <X className="h-6 w-6 text-white" />
               ) : (
                 <Menu className={`h-6 w-6 ${
-                  isScrolled? 'text-yellow-300' : 'text-[#343333]'
+                  isScrolled? 'text-yellow-300' : pathname==="" ? 'text-white':'text-[#343333]'
                 }`} />
               )}
             </Button>
