@@ -10,6 +10,13 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const [mobileScreen, setMobileScreen] = useState(false);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setMobileScreen(window.innerWidth < 768);
+    }
+  }, []);
+
   let pathname = usePathname();
   pathname = pathname.split("/")[1];
 
@@ -53,29 +60,27 @@ const Navbar = () => {
           isScrolled ? "bg-[#343333]" : "bg-transparent"
         } transition-all duration-300`}
       >
-        <div className={`container mx-auto px-4 py-2 flex justify-between items-center ${
-          isMobileMenuOpen? 'bg-[#343333]' : 'transparent'
+        <div className={`container mx-auto px-4 py-2 flex justify-between md:justify-center items-center ${
+          isMobileMenuOpen ? 'bg-[#343333]' : 'transparent'
         }`}>
-          <div className={`${
-            isScrolled? 'hidden' : 'block'
+          <div className={`md:hidden ${
+            isScrolled ? 'hidden' : 'block'
           }`}></div>
 
-          <div className={`text-md font-thin text-yellow-300 ${
-            isScrolled? 'block' : 'hidden'
+          <div className={`text-md md:hidden font-thin text-yellow-300 ${
+            isScrolled ? 'block' : 'hidden'
           }`}>haridwarlive.in</div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex flex-row gap-6 justify-center">
+          <div className="hidden bg-[#343333] px-4 py-2 rounded-full md:flex flex-row gap-6 justify-center">
             {["/", "/temples", "/hotels", "/news", "/contact"].map((path, index) => (
               <Link
                 key={index}
                 href={path}
                 className={`transition-all duration-300 hover:underline ${
                   "/" + pathname === path
-                    ? "text-yellow-300 font-bold"
-                    : isScrolled
-                    ? "text-white"
-                    : "text-black"
+                    ? "font-bold text-yellow-300"
+                    : "text-white"
                 }`}
               >
                 {path === "/"
@@ -96,7 +101,9 @@ const Navbar = () => {
               {isMobileMenuOpen ? (
                 <X className="h-6 w-6 text-white" />
               ) : (
-                <Menu className="h-6 w-6 text-yellow-300" />
+                <Menu className={`h-6 w-6 ${
+                  isScrolled? 'text-yellow-300' : 'text-[#343333]'
+                }`} />
               )}
             </Button>
           </div>
