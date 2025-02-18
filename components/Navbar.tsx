@@ -10,12 +10,6 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const [mobileScreen, setMobileScreen] = useState(false);
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setMobileScreen(window.innerWidth < 768);
-    }
-  }, []);
 
   let pathname = usePathname();
   pathname = pathname.split("/")[1];
@@ -38,14 +32,14 @@ const Navbar = () => {
   return (
     <header
       className={`fixed w-full z-50 ${
-        isScrolled ? "bg-black shadow-lg backdrop-blur" : "bg-transparent"
+        isScrolled ? "bg-[#343333] shadow-lg backdrop-blur" : "bg-transparent"
       } transition-all duration-300`}
     >
       {/* Title Section */}
       <div
         className={`${
           isScrolled ? "hidden" : "block"
-        } bg-black py-1 transition-all duration-300`}
+        } bg-black py-0 transition-all duration-300`}
       >
         <div className="container mx-auto px-4 py-2 text-center">
           <Link href="/" className="text-2xl font-thin text-yellow-300">
@@ -60,7 +54,7 @@ const Navbar = () => {
           isScrolled ? "bg-[#343333]" : "bg-transparent"
         } transition-all duration-300`}
       >
-        <div className={`container mx-auto px-4 py-2 flex justify-between md:justify-center items-center ${
+        <div className={`container mx-auto px-4 py-0 my-1 flex justify-between md:justify-center items-center ${
           isMobileMenuOpen ? 'bg-[#343333]' : 'transparent'
         }`}>
           <div className={`md:hidden ${
@@ -73,7 +67,7 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden bg-[#343333] px-4 py-2 rounded-full md:flex flex-row gap-6 justify-center">
-            {["/", "/temples", "/hotels", "/news", "/contact"].map((path, index) => (
+            {["/home", "/temples", "/hotels", "/news", "/contact", "/about"].map((path, index) => (
               <Link
                 key={index}
                 href={path}
