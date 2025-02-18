@@ -49,12 +49,10 @@ export default function News() {
 
   const handleNext = () => {
     if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
-    scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handlePrevious = () => {
     if (currentPage > 1) setCurrentPage((prev) => prev - 1);
-    scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (

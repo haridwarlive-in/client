@@ -54,7 +54,7 @@ const Navbar = () => {
           isScrolled ? "bg-[#343333]" : "bg-transparent"
         } transition-all duration-300`}
       >
-        <div className={`container mx-auto px-4 py-0 my-1 flex justify-between md:justify-center items-center ${
+        <div className={`container mx-auto px-4 py-0 md:my-1 flex justify-between md:justify-center items-center ${
           isMobileMenuOpen ? 'bg-[#343333]' : 'transparent'
         }`}>
           <div className={`md:hidden ${

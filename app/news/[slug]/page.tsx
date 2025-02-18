@@ -20,11 +20,6 @@ const news = [
   })),
 ];
 
-// Type for the params object
-type Params = {
-  slug: string;
-};
-
 // Generate static params for all news articles
 export async function generateStaticParams() {
   return news.map((item) => ({
@@ -50,7 +45,7 @@ export default function NewsDetailPage({ params }: { params: any }) {
   const shareUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/news/${slug}`;
 
   return (
-    <div className="container mx-auto px-4 py-32 flex flex-col lg:flex-row gap-8">
+    <div className="container mx-auto px-4 pt-32 pb-10 flex flex-col lg:flex-row gap-8">
       {/* Main Content */}
       <div className="lg:w-2/3">
         <Image
@@ -61,7 +56,7 @@ export default function NewsDetailPage({ params }: { params: any }) {
           height={600}
         />
         <div className="py-6">
-          <h1 className="text-4xl font-bold mb-4">{selectedNews.title}</h1>
+          <h1 className="md:text-4xl text-2xl font-semibold mb-4">{selectedNews.title}</h1>
           <div className="flex items-center text-sm text-gray-500 mb-4">
             <Calendar className="h-4 w-4 mr-2" />
             <span>{new Date(selectedNews.date).toLocaleDateString()}</span>
