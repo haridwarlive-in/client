@@ -33,7 +33,7 @@ export async function generateStaticParams() {
 }
 
 // Main component
-export default function NewsDetailPage({ params }: { params: Params }) {
+export default function NewsDetailPage({ params }: { params: any }) {
   const { slug } = params;
 
   // Find the selected news article
