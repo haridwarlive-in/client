@@ -13,8 +13,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Haridwar Tourism - Gateway to Spirituality',
-  description: 'Discover the spiritual city of Haridwar - temples, ghats, hotels, and more',
+  title: "haridwarlivein - City's online platform",
+  description: 'Discover the spiritual city of Haridwar - temples, news, hotels, and more',
 };
 
 export default function RootLayout({
