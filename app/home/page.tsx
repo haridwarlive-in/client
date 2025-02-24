@@ -402,15 +402,15 @@ export default function Home() {
             <div className="flex flex-col justify-start max-md:gap2 items-left gap-2">
               <div className="flex flex-row gap-4 bg-gray-200 text-[#343333] p-4 rounded-lg">
                 <Phone className="h-6 w-6 text-[#343333] transition-transform duration-300 hover:scale-125" />
-                <p className="text-lg font-normal">+91 7017433313</p>
+                <p className="text-lg max-md:text-sm font-normal">+91 7017433313</p>
               </div>
               <div className="flex flex-row gap-4 bg-gray-200 text-[#343333] p-4 rounded-lg">
                 <MapPin className="h-6 w-6 text-[#343333] transition-transform duration-300 hover:scale-125" />
-                <p className="text-lg font-normal">Style and Glamour Store, Gaba complex, Bahadrabad, Haridwar, Uttarakhand, India</p>
+                <p className="text-lg max-md:text-sm font-normal">Style and Glamour Store, Gaba complex, Bahadrabad, Haridwar, Uttarakhand, India</p>
               </div>
               <div className="flex flex-row gap-4 bg-gray-200 text-[#343333] p-4 rounded-lg">
                 <Mail className="h-6 w-6 text-[#343333] transition-transform duration-300 hover:scale-125" />
-                <p className="text-lg font-normal">haridwarlive06@gmail.com</p>
+                <p className="text-lg max-md:text-sm font-normal">haridwarlive06@gmail.com</p>
               </div>
             </div>
 
