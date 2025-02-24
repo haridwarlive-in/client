@@ -40,7 +40,7 @@ export default function Home() {
     try {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/hotels?limit=6`);
       const data = res.data;
-      setHotels(data);
+      setHotels(data.slice(0,6));
     } catch (error) {
       console.log(error);
     }
@@ -337,7 +337,7 @@ export default function Home() {
                hotels.map((hotel, index) => (
                 <Card
                   key={index}
-                  className="flex-shrink-0 w-80 hover:shadow-2xl border-none transition-shadow bg-white rounded-lg group"
+                  className="flex-shrink-0 h-fit w-80 hover:shadow-2xl border-none transition-shadow bg-white rounded-lg group"
                 >
                   <div className="relative w-full h-48 overflow-hidden rounded-t-lg">
                     <Image
