@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import axios from "axios";
 import { MapPin, Phone, Mail } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Contact() {
@@ -74,42 +75,51 @@ export default function Contact() {
                     <div>
                       <h3 className="font-semibold">Address</h3>
                       <p className="">
-                        Tourism Office, Haridwar
+                        Style and Glamour store, Gaba Complex, Bahadrabad, Haridwar
                         <br />
                         Uttarakhand, India
                       </p>
-                      <Button
-                        variant={"outline"}
-                        className="mt-2 px-8 bg-[#343333] text-yellow-500 border-none"
-                      >
-                        Maps
-                      </Button>
+                      <Link href={"https://maps.app.goo.gl/8vyfmLHS6uPbM6fq8"}>
+                        <Button
+                          variant={"outline"}
+                          className="mt-2 px-8 bg-[#343333] text-yellow-500 border-none"
+                        >
+                          Maps
+                        </Button>
+                      </Link>
+                      
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
                     <Phone className="h-6 w-6 mt-1" />
                     <div>
                       <h3 className="font-semibold">Phone</h3>
-                      <p className="">+91 1234567890</p>
+                      <p className="">+91 7017433313</p>
+                      <a href="tel:+917017433313">
                       <Button
                         variant={"outline"}
                         className="mt-2 px-8 bg-[#343333] text-yellow-500 border-none"
                       >
                         Call
                       </Button>
+                      </a>
+                      
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
                     <Mail className="h-6 w-6 mt-1" />
                     <div>
                       <h3 className="font-semibold">Email</h3>
-                      <p className="">info@haridwar-tourism.com</p>
-                      <Button
-                        variant={"outline"}
-                        className="mt-2 px-8 bg-[#343333] text-yellow-500 border-none"
-                      >
-                        Mail
-                      </Button>
+                      <p className="">haridwarlive06@gmail.com</p>
+                      <a href="mailto:haridwarlive06@gmail.com">
+                        <Button
+                          variant={"outline"}
+                          className="mt-2 px-8 bg-[#343333] text-yellow-500 border-none"
+                        >
+                          Mail
+                        </Button>
+                      </a>
+                      
                     </div>
                   </div>
                   

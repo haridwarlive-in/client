@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Phone, ChevronRight, ArrowRight, Mail, Facebook, Twitter, Instagram } from "lucide-react";
+import { MapPin, Phone, ChevronRight, ArrowRight, Mail, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -402,15 +402,15 @@ export default function Home() {
             <div className="flex flex-col justify-start max-md:gap2 items-left gap-2">
               <div className="flex flex-row gap-4 bg-gray-200 text-[#343333] p-4 rounded-lg">
                 <Phone className="h-6 w-6 text-[#343333] transition-transform duration-300 hover:scale-125" />
-                <p className="text-lg font-normal">+91 1234567890</p>
+                <p className="text-lg font-normal">+91 7017433313</p>
               </div>
               <div className="flex flex-row gap-4 bg-gray-200 text-[#343333] p-4 rounded-lg">
                 <MapPin className="h-6 w-6 text-[#343333] transition-transform duration-300 hover:scale-125" />
-                <p className="text-lg font-normal">Haridwar, Uttarakhand, India</p>
+                <p className="text-lg font-normal">Style and Glamour Store, Gaba complex, Bahadrabad, Haridwar, Uttarakhand, India</p>
               </div>
               <div className="flex flex-row gap-4 bg-gray-200 text-[#343333] p-4 rounded-lg">
                 <Mail className="h-6 w-6 text-[#343333] transition-transform duration-300 hover:scale-125" />
-                <p className="text-lg font-normal">info@example.com</p>
+                <p className="text-lg font-normal">haridwarlive06@gmail.com</p>
               </div>
             </div>
 
@@ -419,10 +419,10 @@ export default function Home() {
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                 <Facebook className="h-8 w-8 text-gray-800 hover:scale-105 transition-all duration-300" />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                <Twitter className="h-8 w-8 text-gray-800 hover:scale-105 transition-all duration-300" />
+              <a href="https://www.youtube.com/shorts/-CU_-yLReHo" target="_blank" rel="noopener noreferrer">
+                <Youtube className="h-8 w-8 text-gray-800 hover:scale-105 transition-all duration-300" />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/haridwarlive.in/" target="_blank" rel="noopener noreferrer">
                 <Instagram className="h-8 w-8 text-gray-800 hover:scale-105 transition-all duration-300" />
               </a>
             </div>

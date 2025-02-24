@@ -3,7 +3,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import Link from "next/link";
-import { Facebook, Instagram, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
 
 const poppins = Poppins({ 
   subsets: ['latin'],
@@ -76,19 +76,19 @@ export default function RootLayout({
               <div>
                 <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
                 <p className="text-yellow-300">
-                  Email: <a href="mailto:info@haridwar-tourism.com" className="hover:text-yellow-300">info@haridwar-tourism.com</a>
+                  Email: <a href="mailto:haridwarlive06@gmail.com" className="hover:text-yellow-300">haridwarlive06@gmail.com</a>
                   <br />
-                  Phone: <a href="tel:+911234567890" className="hover:text-yellow-300">+91 1234567890</a>
+                  Phone: <a href="tel:+917017433313" className="hover:text-yellow-300">+91 7017433313</a>
                 </p>
                 {/* Social Media Icons */}
                 <div className="flex space-x-4 mt-4">
                   <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
                     <Facebook className="h-6 w-6" />
                   </a>
-                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
-                    <Twitter className="h-6 w-6" />
+                  <a href="https://www.youtube.com/shorts/-CU_-yLReHo" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
+                    <Youtube className="h-6 w-6" />
                   </a>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
+                  <a href="https://instagram.com/haridwarlive.in" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
                     <Instagram className="h-6 w-6" />
                   </a>
                 </div>
