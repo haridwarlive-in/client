@@ -7,9 +7,53 @@ import Image from "next/image";
 import Link from "next/link";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import { Hotel, News, Temple } from "@/types";
 
 
 export default function Home() {
+
+  const [news, setNews] = useState<News[]>([]);
+  const fetchNews = async () => {
+    try {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/news?limit=8`);
+      const data = await res.data.news;
+      setNews(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
+  const [temples, setTemples] = useState<Temple[]>([]);
+  const fetchTemples = async () => {
+    try {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/temples?limit=6`);
+      const data = res.data;
+      setTemples(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const [hotels, setHotels] = useState<Hotel[]>([]);
+  const fetchHotels = async () => {
+    try {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/hotels?limit=6`);
+      const data = res.data;
+      setHotels(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+  useEffect(()=>{
+    fetchNews();
+    fetchTemples();
+    fetchHotels()
+  }, [])
+
+
   const [mobileScreen, setMobileScreen] = useState(false);
   useEffect(()=>{
     if (window.innerWidth < 768) {
@@ -56,7 +100,7 @@ export default function Home() {
               <ArrowRight className="ml-2 h-4 w-4 group-hover:ml-4 transition-all duration-300" />
             </Link>
             <Link
-              href="#news"
+              href="/news"
               className="group flex flex-row gap-2 justify-center items-center px-4 md:px-6 py-3 border-none w-full md:w-72 bg-yellow-300 text-[#343333] cursor-pointer text-sm md:text-lg rounded-full shadow-lg hover:shadow-xl hover:bg-yellow-300 hover:text-[#343333] transition-all duration-300"
             >
               <div className="text-sm md:text-lg font-medium">
@@ -65,7 +109,7 @@ export default function Home() {
               <ArrowRight className="ml-2 h-4 w-4 group-hover:ml-4 transition-all duration-300" />
             </Link>
             <Link
-              href="#contact"
+              href="/contact"
               className="group flex flex-row gap-2 justify-center items-center px-4 md:px-6 py-3 border-none w-full md:w-72 bg-yellow-300 text-[#343333] cursor-pointer text-sm md:text-lg rounded-full shadow-lg hover:shadow-xl hover:bg-yellow-300 hover:text-[#343333] transition-all duration-300"
             >
               <div className="text-sm md:text-lg font-medium">Reach out to us</div>
@@ -77,7 +121,7 @@ export default function Home() {
 
 
       {/* About Section */}
-      <section id="about" className="py-16 text-[#343333]">
+      <section id="explore" className="py-16 text-[#343333]">
         <div className="container mx-auto px-4">
           <h2 className="border-l-4 border-yellow-400 py-4 text-4xl max-md:text-2xl font-normal text-left mb-4 px-8">About <span className="font-bold">Haridwar</span></h2>
           <div className="grid md:grid-cols-2 md:gap-12 items-center bg-yellow-300 rounded-3xl">
@@ -139,44 +183,20 @@ export default function Home() {
               loop: true,
             }}>
             <CarouselContent className="flex max-md:h-[510px]"> {/* Ensure horizontal scroll with space between items */}
-              {[
-                {
-                  name: "Mansa Devi Temple",
-                  image: "https://images.unsplash.com/photo-1653392171376-63cb323fb31e?q=80&w=800&auto=format&fit=crop",
-                },
-                {
-                  name: "Chandi Devi Temple",
-                  image: "https://images.unsplash.com/photo-1653392171376-63cb323fb31e?q=80&w=800&auto=format&fit=crop",
-                },
-                {
-                  name: "Har Ki Pauri",
-                  image: "https://images.unsplash.com/photo-1653392171376-63cb323fb31e?q=80&w=800&auto=format&fit=crop",
-                },
-                {
-                  name: "Maya Devi Temple",
-                  image: "https://images.unsplash.com/photo-1653392171376-63cb323fb31e?q=80&w=800&auto=format&fit=crop",
-                },
-                {
-                  name: "Daksha Mahadev Temple",
-                  image: "https://images.unsplash.com/photo-1653392171376-63cb323fb31e?q=80&w=800&auto=format&fit=crop",
-                },
-                {
-                  name: "Bilkeshwar Mahadev Temple",
-                  image: "https://images.unsplash.com/photo-1653392171376-63cb323fb31e?q=80&w=800&auto=format&fit=crop",
-                },
-              ].map((temple, index) => (
+              {
+              temples.map((temple, index) => (
                 <CarouselItem key={index} className="basis-1/3"> {/* Each item takes up 33% width */}
                   <Card className="hover:shadow-lg transition-shadow rounded-lg">
                     <div className="relative w-full h-48">
                       <Image
                         src={temple.image}
-                        alt={temple.name}
+                        alt={temple.title}
                         layout="fill"
                         className="object-cover rounded-t-lg"
                       />
                     </div>
                     <CardContent className="p-2 text-center rounded-b-lg bg-[#343333] text-white">
-                      <h3 className="text-lg font-light">{temple.name}</h3>
+                      <h3 className="text-lg font-light">{temple.title}</h3>
                     </CardContent>
                   </Card>
                 </CarouselItem>
@@ -198,7 +218,7 @@ export default function Home() {
                 asChild
                 className="bg-[#343333] text-yellow-500 max-md:text-md rounded-lg px-10 py-6 group font-normal text-lg hover:bg-[#343333] hover:text-yellow-500 transition-all duration-300"
               >
-                <Link href="/temples">
+                <Link href="/news">
                   View More
                   <ArrowRight className="ml-2 h-6 w-6 group-hover:ml-8 transition-all duration-500" />
                 </Link>
@@ -208,45 +228,14 @@ export default function Home() {
           {/* Infinite Scroll Container */}
           <div className="relative overflow-scroll">
             <div className="flex animate-scroll gap-6 items-center">
-              {[
-                {
-                  title: "Haridwar Ganga Aarti attracts record visitors.",
-                  image:
-                    "https://images.unsplash.com/photo-1624269305548-1527ef905ff6?q=80&w=3042&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                },
-                {
-                  title: "New eco-tourism initiatives announced.",
-                  image:
-                    "https://images.unsplash.com/photo-1624269305548-1527ef905ff6?q=80&w=3042&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                },
-                {
-                  title: "Upcoming festivals: Plan your trip now!",
-                  image:
-                    "https://images.unsplash.com/photo-1624269305548-1527ef905ff6?q=80&w=3042&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                },
-                {
-                  title: "Preserving Haridwar’s sacred ghats.",
-                  image:
-                    "https://images.unsplash.com/photo-1624269305548-1527ef905ff6?q=80&w=3042&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                },
-                {
-                  title: "Har Ki Pauri’s historic significance explained.",
-                  image:
-                    "https://images.unsplash.com/photo-1624269305548-1527ef905ff6?q=80&w=3042&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                },
-                {
-                  title: "New cable car service inaugurated.",
-                  image:
-                    "https://images.unsplash.com/photo-1624269305548-1527ef905ff6?q=80&w=3042&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                },
-              ].map((news, index) => (
+              {news.map((news, index) => (
                 <Card
                   key={index}
                   className="flex-shrink-0 h-full w-80 cursor-pointer transition-all duration-200 border-none bg-white rounded-lg"
                 >
                   <div className="relative w-full h-48">
                     <Image
-                      src={news.image}
+                      src={news.image as string}
                       alt={news.title}
                       layout="fill"
                       className="object-cover rounded-t-lg"
@@ -259,7 +248,7 @@ export default function Home() {
                       asChild
                       className="bg-yellow-300 text-[#343333] border-none hover:bg-yellow-300 hover:text-[#343333] group transition-all duration-300"
                     >
-                      <Link href="/news">
+                      <Link href={`/news/${news._id}`}>
                         Read More
                         <ChevronRight className="group-hover:ml-4 transition-all duration-300" />
                       </Link>
@@ -268,25 +257,14 @@ export default function Home() {
                 </Card>
               ))}
               {/* Duplicate items for infinite loop */}
-              {[
-                {
-                  title: "Haridwar Ganga Aarti attracts record visitors.",
-                  image:
-                    "https://images.unsplash.com/photo-1624269305548-1527ef905ff6?q=80&w=3042&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                },
-                {
-                  title: "New eco-tourism initiatives announced.",
-                  image:
-                    "https://images.unsplash.com/photo-1624269305548-1527ef905ff6?q=80&w=3042&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                },
-              ].map((news, index) => (
+              {news.map((news, index) => (
                 <Card
                   key={`duplicate-${index}`}
                   className="flex-shrink-0 w-80 hover:shadow-xl border-none transition-shadow bg-white rounded-lg"
                 >
                   <div className="relative w-full h-48">
                     <Image
-                      src={news.image}
+                      src={news.image as string}
                       alt={news.title}
                       layout="fill"
                       className="object-cover rounded-t-lg"
@@ -299,7 +277,7 @@ export default function Home() {
                       asChild
                       className="bg-yellow-300 text-[#343333] border-none hover:bg-yellow-300 hover:text-[#343333] group transition-all duration-300"
                     >
-                      <Link href="/news">
+                      <Link href={`/news/${news._id}`}>
                         Read More
                         <ChevronRight className="group-hover:ml-4 transition-all duration-300" />
                       </Link>
@@ -355,44 +333,8 @@ export default function Home() {
             <div
               className="flex gap-6 animate-scroll"            
               >
-              {[
-                {
-                  name: "Hotel Ganga View",
-                  description: "Experience riverside serenity with top-notch amenities.",
-                  image:
-                    "https://images.unsplash.com/photo-1679310289994-9033a196b136?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                },
-                {
-                  name: "Spiritual Inn",
-                  description: "Modern comforts near Har Ki Pauri for pilgrims.",
-                  image:
-                    "https://images.unsplash.com/photo-1679310289994-9033a196b136?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                },
-                {
-                  name: "Eco Stay Haridwar",
-                  description: "Embrace nature with eco-friendly accommodations.",
-                  image:
-                    "https://images.unsplash.com/photo-1679310289994-9033a196b136?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                },
-                {
-                  name: "Luxury Suites",
-                  description: "Relax in premium rooms with breathtaking views.",
-                  image:
-                    "https://images.unsplash.com/photo-1679310289994-9033a196b136?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                },
-                {
-                  name: "Budget Bliss",
-                  description: "Affordable stays with convenient locations.",
-                  image:
-                    "https://images.unsplash.com/photo-1679310289994-9033a196b136?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                },
-                {
-                  name: "Heritage Haven",
-                  description: "Stay amidst Haridwar’s rich cultural heritage.",
-                  image:
-                    "https://images.unsplash.com/photo-1679310289994-9033a196b136?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                },
-              ].map((hotel, index) => (
+              {
+               hotels.map((hotel, index) => (
                 <Card
                   key={index}
                   className="flex-shrink-0 w-80 hover:shadow-2xl border-none transition-shadow bg-white rounded-lg group"
@@ -400,20 +342,19 @@ export default function Home() {
                   <div className="relative w-full h-48 overflow-hidden rounded-t-lg">
                     <Image
                       src={hotel.image}
-                      alt={hotel.name}
+                      alt={hotel.title}
                       layout="fill"
                       className="object-cover transition-all duration-500 group-hover:scale-110"
                     />
                   </div>
                   <CardContent className="bg-[#343333] rounded-b-lg text-white p-4">
-                    <h3 className="text-lg font-semibold">{hotel.name}</h3>
-                    <p className="text-sm mb-4">{hotel.description}</p>
+                    <h3 className="text-lg font-semibold">{hotel.title}</h3>
                     <Button
                       variant="outline"
                       asChild
-                      className="bg-yellow-300 text-[#343333] border-none group hover:bg-yellow-300 hover:text-[#343333] transition-all duration-300"
+                      className="bg-yellow-300 mt-2 text-[#343333] border-none group hover:bg-yellow-300 hover:text-[#343333] transition-all duration-300"
                     >
-                      <Link href="/hotels">
+                      <Link href={`/hotels/${hotel._id}`}>
                         View {" "}
                         <ChevronRight className="group-hover:ml-4 transition-all duration-300" />
                       </Link>

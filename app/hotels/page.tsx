@@ -1,44 +1,31 @@
 "use client";
 
-import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useEffect, useState } from "react";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, Globe2, Link } from "lucide-react";
 import Image from "next/image";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogFooter,
-  DialogTrigger,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { BookingDialogFormTypes } from "@/types";
-import { useForm, Controller } from "react-hook-form";
+import { Hotel } from "@/types";
 import axios from 'axios';
+import { useRouter } from "next/navigation";
 
-const hotels = [
-  // Repeat similar objects with different details to make 30 hotels.
-  ...Array(30)
-    .fill(0)
-    .map((_, index) => ({
-      _id: "6797d0d17066e196c70d6a72",
-      name: `Hotel ${index + 1}`,
-      description: `This is a description of Hotel ${
-        index + 1
-      }. Perfect for your stay.`,
-      image: `https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80`,
-      location: `Location ${index + 1}`,
-      phone: `+91-98765432${index}`,
-      email: `hotel${index + 1}@example.com`,
-    })),
-];
+export default function Hotels() {  
 
-export default function Hotels() {
+  const router = useRouter();
+  const [hotels, setHotels] = useState<Hotel[]>([]);
+  useEffect(() => {
+    const fetchHotels = async () => {
+      try {
+        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/hotels`);
+        setHotels(data);
+      } catch (error) {
+        console.error('Failed to fetch hotels', error);
+      }
+    };
+    fetchHotels();
+  },
+  []);
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
   const totalPages = Math.ceil(hotels.length / itemsPerPage);
@@ -64,44 +51,60 @@ export default function Hotels() {
         <h1 className="text-4xl max-md:text-3xl border-l-yellow-300 py-6 px-8 border-l-4 mb-8">
           Places to Stay in <span className="font-bold">Haridwar</span>
         </h1>
-        <div className="space-y-6">
+        <div className="space-y-2">
           {paginatedHotels.map((hotel, index) => (
             <Card
               key={index}
               className="flex flex-col md:flex-row max-md:pb-4 md:items-start bg-white shadow-sm rounded-lg overflow-hidden"
             >
+              <div className="w-fit h-full items-center justify-center">
               <Image
                 src={hotel.image}
-                alt={hotel.name}
-                className="w-full md:w-1/3 h-full object-cover md:rounded-l-lg"
+                alt={hotel.title}
+                className="w-full h-full md:rounded-l-lg"
                 loading="lazy"
                 width={400}
                 height={300}
               />
+              </div>
+              
               <div className="flex flex-col justify-between md:flex-1">
-                <CardHeader>
-                  <CardTitle className="text-xl font-bold">
-                    {hotel.name}
+                <CardHeader className="max-md:p-3">
+                  <CardTitle className="text-xl max-md:text-lg font-bold">
+                    {hotel.title}
                   </CardTitle>
-                  <div className="flex items-center text-gray-500 mt-2">
+                  <div className="flex max-md:text-sm items-center text-gray-500 mt-2">
                     <MapPin className="h-4 w-4 mr-2" />
-                    <span>{hotel.location}</span>
+                    <span>{hotel.address}</span>
                   </div>
                 </CardHeader>
-                <CardContent className="py-0">
-                  <p className="text-gray-600 mb-4">{hotel.description}</p>
+                <CardContent className="py-0 max-md:text-sm max-md:p-3">
                   <div className="flex items-center text-gray-500 mb-2">
                     <Phone className="h-4 w-4 mr-2" />
-                    <span>{hotel.phone}</span>
+                    <span>{hotel.contact.phone}</span>
                   </div>
-                  <div className="flex items-center text-gray-500 mb-4">
+                  <div className="flex items-center text-gray-500 mb-2">
                     <Mail className="h-4 w-4 mr-2" />
-                    <span>{hotel.email}</span>
+                    <span>{hotel.contact.email}</span>
                   </div>
-
+                  <div className="flex items-center text-gray-500 mb-2">
+                    <Link className="h-4 w-4 mr-2" />
+                    <span>{hotel.contact.website}</span>
+                  </div>
                   {/** Booking Dialog Trigger */}
-                  <BookingDialog hotelId={hotel._id} />
+                  
                 </CardContent>
+
+                <CardFooter className="max-md:p-2">
+                  <Button
+                  onClick={() => {
+                    router.push(`/hotels/${hotel._id}`);
+                  }}
+                  className="md:mt-4 px-6 py-0 rounded-full bg-yellow-300 text-[#343333] hover:text-yellow-300"
+                  >
+                    View more
+                  </Button>
+                </CardFooter>
               </div>
             </Card>
           ))}
@@ -131,141 +134,3 @@ export default function Hotels() {
   );
 }
 
-const BookingDialog = ({ hotelId }: { hotelId: string }) => {
-  
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-    reset
-  } = useForm<BookingDialogFormTypes>({
-    defaultValues: {
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
-      date: '',
-      totalDays: 0,
-      hotelId: hotelId
-    }
-  });
-
-  const onSubmit = async (data: BookingDialogFormTypes) => {
-    console.log('Form submitted', data);
-    // Handle form submission (e.g., send data to API, etc.)
-    await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/bookings`, data, {
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    reset(); // Reset form after submission
-  };
-
-
-  return (
-    <Dialog>
-      <DialogTrigger className="w-fit py-2 px-4 rounded-full bg-yellow-300 hover:bg-yellow-300/80 text-[#343333] text-sm font-medium">
-        Book now
-      </DialogTrigger>
-      <DialogContent className="p-4 max-md:w-[95vw]">
-        <DialogHeader>
-          <DialogTitle>Request Room Booking Now!</DialogTitle>
-          <DialogDescription>
-            Send a booking request, and we will contact you shortly for
-            confirmation.
-          </DialogDescription>
-        </DialogHeader>
-
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          {/* Name Field */}
-          <div>
-            <Label>Name</Label>
-            <Controller
-              control={control}
-              name="name"
-              rules={{ required: 'Name is required' }}
-              render={({ field }) => <Input {...field} />}
-            />
-            {errors.name && <p className="text-red-600 text-xs mt-1">{errors.name.message}</p>}
-          </div>
-
-          {/* Phone Field */}
-          <div>
-            <Label>Phone</Label>
-            <Controller
-              control={control}
-              name="phone"
-              rules={{ required: 'Phone number is required' }}
-              render={({ field }) => <Input {...field} />}
-            />
-            {errors.phone && <p className="text-red-600 text-xs mt-1">{errors.phone.message}</p>}
-          </div>
-
-          {/* Email Field */}
-          <div>
-            <Label>Email</Label>
-            <Controller
-              control={control}
-              name="email"
-              rules={{
-                required: 'Email is required',
-                pattern: {
-                  value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
-                  message: 'Invalid email address'
-                }
-              }}
-              render={({ field }) => <Input {...field} />}
-            />
-            {errors.email && <p className="text-red-600 text-xs mt-1">{errors.email.message}</p>}
-          </div>
-
-          {/* Check-in Date */}
-          <div>
-            <Label>Check-in Date</Label>
-            <Controller
-              control={control}
-              name="date"
-              rules={{ required: 'Date is required' }}
-              render={({ field }) => <Input type="date" {...field} />}
-            />
-            {errors.date && <p className="text-red-600 text-xs mt-1">{errors.date.message}</p>}
-          </div>
-
-          {/* Total Days of Stay */}
-          <div>
-            <Label>Total Days of Stay</Label>
-            <Controller
-              control={control}
-              name="totalDays"
-              rules={{ required: 'Total days is required' }}
-              render={({ field }) => <Input type="number" {...field} />}
-            />
-            {errors.totalDays && <p className="text-red-600 text-xs mt-1">{errors.totalDays.message}</p>}
-          </div>
-
-          {/* Message Field */}
-          <div>
-            <Label>Message</Label>
-            <Controller
-              control={control}
-              name="message"
-              render={({ field }) => <Textarea rows={2} placeholder="Optional" {...field} />}
-            />
-          </div>
-
-          {/* Submit Button */}
-          <DialogFooter>
-            <Button
-              type="submit"
-              className="bg-yellow-300 text-[#343333] text-sm hover:bg-yellow-300/80 w-full mt-4"
-            >
-              Send Booking Request
-            </Button>
-          </DialogFooter>
-        </form>
-
-      </DialogContent>
-    </Dialog>
-  );
-};
