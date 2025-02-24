@@ -231,7 +231,7 @@ export default function Home() {
               {news.map((news, index) => (
                 <Card
                   key={index}
-                  className="flex-shrink-0 bg-[#343333] w-80 cursor-pointer transition-all duration-200 border-none bg-white rounded-lg"
+                  className="flex-shrink-0 bg-[#343333] w-80 cursor-pointer transition-all duration-200 border-none rounded-lg"
                 >
                   <div className="relative w-full h-48">
                     <Image
