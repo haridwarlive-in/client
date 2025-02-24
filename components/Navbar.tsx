@@ -107,7 +107,7 @@ const Navbar = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden bg-[#343333] pb-6">
             <ul className="flex flex-col items-center gap-4 py-4">
-              {["/", "/temples", "/hotels", "/news", "/contact"].map((path, index) => (
+              {["/home", "/temples", "/hotels", "/news", "/contact"].map((path, index) => (
                 <li key={index}>
                   <Link
                     href={path}
