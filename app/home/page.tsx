@@ -347,7 +347,7 @@ export default function Home() {
                       className="object-cover transition-all duration-500 group-hover:scale-110"
                     />
                   </div>
-                  <CardContent className="bg-[#343333] rounded-b-lg text-white p-4">
+                  <CardContent className="bg-[#343333] h-full rounded-b-lg text-white p-4">
                     <h3 className="text-lg font-semibold">{hotel.title}</h3>
                     <Button
                       variant="outline"

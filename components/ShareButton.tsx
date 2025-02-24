@@ -37,7 +37,7 @@ export const ShareButton: FC<{ url: string }> = ({ url }) => {
       </a>
       <a href={shareLinks.facebook} target="_blank" rel="noopener noreferrer" className="text-blue-700">
         <Image
-          src={"/icons/facebookIcon.svg"}
+          src={"/icons/FacebookIcon.svg"}
           alt="facebook icon"
           height={40}
           width={40}
