@@ -94,8 +94,8 @@ export default function Contact() {
                     <Phone className="h-6 w-6 mt-1" />
                     <div>
                       <h3 className="font-semibold">Phone</h3>
-                      <p className="">+91 7017433313</p>
-                      <a href="tel:+917017433313">
+                      <p className="">+91 6395438784</p>
+                      <a href="tel:+916395438784">
                       <Button
                         variant={"outline"}
                         className="mt-2 px-8 bg-[#343333] text-yellow-500 border-none"

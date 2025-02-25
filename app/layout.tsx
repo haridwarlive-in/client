@@ -78,7 +78,7 @@ export default function RootLayout({
                 <p className="text-yellow-300">
                   Email: <a href="mailto:haridwarlive06@gmail.com" className="hover:text-yellow-300">haridwarlive06@gmail.com</a>
                   <br />
-                  Phone: <a href="tel:+917017433313" className="hover:text-yellow-300">+91 7017433313</a>
+                  Phone: <a href="tel:+916395438784" className="hover:text-yellow-300">+91 6395438784</a>
                 </p>
                 {/* Social Media Icons */}
                 <div className="flex space-x-4 mt-4">
