@@ -40,9 +40,7 @@ async function fetchTrendingNews() {
   } catch (error) {
     console.log("Error fetching news:", error);
     return null;
-  } finally {
-    window.location.reload()
-  }
+  } 
 }
 
 interface Props {
