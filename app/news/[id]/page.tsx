@@ -85,7 +85,7 @@ export default function NewsDetailPage() {
               </span>
             ))}
           </div>
-          <div className="max-md:px-4" dangerouslySetInnerHTML={{ __html: selectedNews?.content as string }}>
+          <div className="max-md:px-2" dangerouslySetInnerHTML={{ __html: selectedNews?.content as string }}>
           </div>
           
           
