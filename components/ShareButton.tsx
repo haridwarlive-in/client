@@ -53,7 +53,7 @@ export const ShareButton: FC<{ url: string }> = ({ url }) => {
           width={25}
         ></Image>
       </a>
-      <a href={shareLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-700">
+      <a href={shareLinks.telegram} target="_blank" rel="noopener noreferrer" className="text-blue-700">
         <Image
           src={"/icons/TelegramIcon.svg"}
           alt="telegram icon"
