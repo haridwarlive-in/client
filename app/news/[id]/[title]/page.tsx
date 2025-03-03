@@ -54,7 +54,7 @@ export default function NewsDetailPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 pt-32 pb-4 flex flex-col lg:flex-row gap-8">
+    <div className="container mx-auto px-2 pt-32 pb-4 flex flex-col lg:flex-row gap-8">
       {/* Main Content */}
       <div className="lg:w-2/3">
         <Image
