@@ -94,8 +94,6 @@ export default function NewsDetailPage() {
               </span>
             ))}
           </div>
-          
-          
         </div>
       </div>
 

@@ -11,7 +11,8 @@ export const ShareButton: FC<{ url: string }> = ({ url }) => {
     twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent("Check out this news article!")}`,
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
     instagram: `https://www.instagram.com/?url=${encodeURIComponent(url)}`,
-    linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`
+    linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+    telegram: ` https://t.me/share/url?url=${encodeURIComponent(url)}`
   };
 
   const handleCopyLink = () => {
@@ -48,6 +49,14 @@ export const ShareButton: FC<{ url: string }> = ({ url }) => {
         <Image
           src={"/icons/LinkedinIcon.svg"}
           alt="linkedin icon"
+          height={22}
+          width={22}
+        ></Image>
+      </a>
+      <a href={shareLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-700">
+        <Image
+          src={"/icons/TelegramIcon.svg"}
+          alt="telegram icon"
           height={22}
           width={22}
         ></Image>
