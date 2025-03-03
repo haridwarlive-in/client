@@ -54,7 +54,7 @@ export default function NewsDetailPage() {
   }
 
   return (
-    <div className="container mx-auto px-2 pt-32 pb-4 flex flex-col lg:flex-row gap-8">
+    <div className="container mx-auto px-3 pt-32 pb-4 flex flex-col lg:flex-row gap-8">
       {/* Main Content */}
       <div className="lg:w-2/3">
         <Image
@@ -83,7 +83,7 @@ export default function NewsDetailPage() {
           </div>
           
           
-          <div className="max-md:px-2" dangerouslySetInnerHTML={{ __html: selectedNews?.content as string }}></div>
+          <div className="max-md:px-1" dangerouslySetInnerHTML={{ __html: selectedNews?.content as string }}></div>
           <div className="flex flex-wrap gap-2 mb-6 mt-4">
             {selectedNews?.tags.map((tag, index) => (
               <span
