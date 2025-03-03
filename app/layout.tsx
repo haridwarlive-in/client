@@ -5,6 +5,7 @@ import { Poppins } from 'next/font/google';
 import Link from "next/link";
 import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
 import Script from 'next/script';
+import AdSense from '@/components/AdSense';
 
 const poppins = Poppins({ 
   subsets: ['latin'],
@@ -37,17 +38,8 @@ export default function RootLayout({
           `}
           
         </Script>
-        <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4570020009822816"
-        crossOrigin="anonymous"></Script>
-        <ins className="adsbygoogle"
-            style={{"display":"block"}}
-            data-ad-client="ca-pub-4570020009822816"
-            data-ad-slot="6672601003"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-        <Script id='goole-ads'>
-          {`(adsbygoogle = window.adsbygoogle || []).push({});`}
-        </Script>
+
+        <AdSense pId={"4570020009822816"}/>
       </head>
       <body className={poppins.className}>
         <Navbar/>
