@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import Link from "next/link";
 import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 const poppins = Poppins({ 
   subsets: ['latin'],
@@ -25,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={poppins.variable}>
       <body className={poppins.className}>
+        <GoogleAnalytics />
         <Navbar/>
         <main>{children}</main>
         <footer className="relative bg-[#343333] text-yellow-300 pt-8 pb-16">
