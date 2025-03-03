@@ -100,7 +100,7 @@ async function NewsPage(props: Props) {
                     </span>
                   </CardHeader>
                   <CardContent className="px-2 py-0">
-                    <ButtonClient id={news[0]._id} />
+                    <ButtonClient id={news[0]._id} title={news[0].urlTitle} />
                   </CardContent>
                 </Card>
                 {/* Right-side Articles (3 articles) placed below the main article */}
@@ -123,7 +123,7 @@ async function NewsPage(props: Props) {
                       </span>
                     </CardHeader>
                     <CardFooter className="px-2 py-0">
-                      <ButtonClient id={item._id} />
+                      <ButtonClient id={item._id} title={item.urlTitle}/>
                     </CardFooter>
                   </Card>
                 ))}
@@ -155,7 +155,7 @@ async function NewsPage(props: Props) {
                       </span>
                     </CardHeader>
                     <CardContent className="px-2 py-0">
-                      <ButtonClient id={item._id} allowClick={false} />
+                      <ButtonClient id={item._id} title={item.urlTitle}/>
                     </CardContent>
                   </Card>
                 ))}
@@ -195,7 +195,7 @@ async function NewsPage(props: Props) {
                     </span>
                   </CardHeader>
                   <CardContent className="px-2 py-0">
-                    <ButtonClient id={news._id} />
+                    <ButtonClient id={news._id} title={news.urlTitle}/>
                   </CardContent>
                 </Card>
                 ))}

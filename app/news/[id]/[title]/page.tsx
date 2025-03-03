@@ -2,12 +2,12 @@
 import Image from "next/image";
 import { notFound, useParams } from "next/navigation";
 import Link from "next/link";
-import { Calendar } from "lucide-react";
+import { Calendar, User2, UserPen } from "lucide-react";
 import ShareButton from "@/components/ShareButton";
 import { useEffect, useState } from "react";
 import { News } from "@/types";
 import LocaleDate from "@/components/LocaleDate";
-import Loading from "../Loading";
+import Loading from "../../Loading";
 
 // Main component
 export default function NewsDetailPage() {
@@ -54,7 +54,7 @@ export default function NewsDetailPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 pt-32 pb-10 flex flex-col lg:flex-row gap-8">
+    <div className="container mx-auto px-4 pt-32 pb-4 flex flex-col lg:flex-row gap-8">
       {/* Main Content */}
       <div className="lg:w-2/3">
         <Image
@@ -71,11 +71,20 @@ export default function NewsDetailPage() {
         <ShareButton url={shareUrl} />
         <div className="py-6">
           <h1 className="md:text-4xl text-2xl font-semibold mb-4">{selectedNews?.title}</h1>
-          <div className="flex items-center text-sm text-gray-500 mb-4">
-            <Calendar className="h-4 w-4 mr-2" />
-            <LocaleDate date={selectedNews?.date as string} />
+          <div className="flex flex-row items-center mb-4 ">
+            <div className="flex items-center border-r pr-4 text-md text-gray-500">
+              <UserPen className="h-4 w-4 mr-2" />
+              <p>{selectedNews?.author}</p>
+            </div>
+            <div className="flex items-center pl-4 text-md text-gray-500">
+              <Calendar className="h-4 w-4 mr-2" />
+              <LocaleDate date={selectedNews?.date as string} />
+            </div>
           </div>
-          <div className="flex flex-wrap gap-2 mb-6">
+          
+          
+          <div className="max-md:px-2" dangerouslySetInnerHTML={{ __html: selectedNews?.content as string }}></div>
+          <div className="flex flex-wrap gap-2 mb-6 mt-4">
             {selectedNews?.tags.map((tag, index) => (
               <span
                 key={index}
@@ -84,8 +93,6 @@ export default function NewsDetailPage() {
                 {tag}
               </span>
             ))}
-          </div>
-          <div className="max-md:px-2" dangerouslySetInnerHTML={{ __html: selectedNews?.content as string }}>
           </div>
           
           
@@ -98,7 +105,7 @@ export default function NewsDetailPage() {
         <ul className="space-y-4">
           {otherNews?.map((item) => (
             <li key={item._id}>
-              <Link href={`/news/${item._id}`} className="flex items-center gap-4">
+              <Link href={`/news/${item._id}/${item.urlTitle}`} className="flex items-center gap-4">
                 <Image
                   src={item.image as string ?? null}
                   alt={item.title}
