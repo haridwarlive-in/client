@@ -39,7 +39,8 @@ export default function RootLayout({
           
         </Script>
 
-        <AdSense pId={"4570020009822816"}/>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4570020009822816"
+     crossOrigin="anonymous"></script>
       </head>
       <body className={poppins.className}>
         <Navbar/>
