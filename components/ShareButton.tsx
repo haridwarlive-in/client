@@ -48,8 +48,8 @@ export const ShareButton: FC<{ url: string }> = ({ url }) => {
         <Image
           src={"/icons/LinkedinIcon.svg"}
           alt="linkedin icon"
-          height={24}
-          width={24}
+          height={22}
+          width={22}
         ></Image>
       </a>
       <button onClick={handleCopyLink} className="text-gray-700">
