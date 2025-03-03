@@ -83,7 +83,7 @@ export default function NewsDetailPage() {
           </div>
           
           
-          <div className="max-md:px-1" dangerouslySetInnerHTML={{ __html: selectedNews?.content as string }}></div>
+          <div dangerouslySetInnerHTML={{ __html: selectedNews?.content as string }}></div>
           <div className="flex flex-wrap gap-2 mb-6 mt-4">
             {selectedNews?.tags.map((tag, index) => (
               <span
