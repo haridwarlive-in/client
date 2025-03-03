@@ -25,40 +25,40 @@ export const ShareButton: FC<{ url: string }> = ({ url }) => {
         <Image
           src={"/icons/WhatsappIcon.svg"}
           alt="whatsapp icon"
-          height={24}
-          width={24}
+          height={28}
+          width={28}
         ></Image>
       </a>
       <a href={shareLinks.twitter} target="_blank" rel="noopener noreferrer" className="text-blue-500">
         <Image
           src={"/icons/TwitterIcon.svg"}
           alt="twitter icon"
-          height={24}
-          width={24}
+          height={28}
+          width={28}
         ></Image>
       </a>
       <a href={shareLinks.facebook} target="_blank" rel="noopener noreferrer" className="text-blue-700">
         <Image
           src={"/icons/FacebookIcon.svg"}
           alt="facebook icon"
-          height={24}
-          width={24}
+          height={28}
+          width={28}
         ></Image>
       </a>
       <a href={shareLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-700">
         <Image
           src={"/icons/LinkedinIcon.svg"}
           alt="linkedin icon"
-          height={22}
-          width={22}
+          height={25}
+          width={25}
         ></Image>
       </a>
       <a href={shareLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-700">
         <Image
           src={"/icons/TelegramIcon.svg"}
           alt="telegram icon"
-          height={22}
-          width={22}
+          height={26}
+          width={26}
         ></Image>
       </a>
       <button onClick={handleCopyLink} className="text-gray-700">
