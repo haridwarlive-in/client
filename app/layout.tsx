@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import Link from "next/link";
 import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
-import GoogleAnalytics from '@/components/GoogleAnalytics';
+import Script from 'next/script';
 
 const poppins = Poppins({ 
   subsets: ['latin'],
@@ -25,8 +25,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={poppins.variable}>
+      <head>
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-RRTTR7ELD2"></Script>
+        <Script id='google-analytics'>
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-RRTTR7ELD2');
+          `}
+          
+        </Script>
+      </head>
       <body className={poppins.className}>
-        <GoogleAnalytics />
         <Navbar/>
         <main>{children}</main>
         <footer className="relative bg-[#343333] text-yellow-300 pt-8 pb-16">
