@@ -41,7 +41,7 @@ const NewsByCategory = ({news, category}: {news: News[], category: string}) => {
               </span>
             </CardHeader>
             <CardFooter className="px-2 py-0">
-              <ButtonClient id={item._id} />
+              <ButtonClient id={item._id} title={item.urlTitle}/>
             </CardFooter>
           </Card>
         ))}
