@@ -64,6 +64,7 @@ export default function NewsDetailPage() {
     <div className="container mx-auto px-3 pt-32 pb-4 flex flex-col lg:flex-row gap-8">
       {/* Main Content */}
       <div className="lg:w-2/3">
+      <h1 className="md:text-4xl text-2xl font-semibold mb-4">{selectedNews?.title}</h1>
         <Image
           src={selectedNews?.image as string ?? null}
           alt={selectedNews?.title as string}
@@ -77,7 +78,7 @@ export default function NewsDetailPage() {
         {/* Share buttons */}
         <ShareButton url={shareUrl} />
         <div className="py-6">
-          <h1 className="md:text-4xl text-2xl font-semibold mb-4">{selectedNews?.title}</h1>
+          
           <div className="flex flex-row items-center mb-4 ">
             <div className="flex items-center border-r pr-4 text-md text-gray-500">
               <UserPen className="h-4 w-4 mr-2" />
