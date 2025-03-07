@@ -28,7 +28,7 @@ export default function NewsDetailPage() {
   // Fetch news data
   const fetchNews = async () => {
     // Fetch news data from the backend
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/news?limit=20`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/news?limit=10`);
     const data = await response.json();
     setNews(data.news);
   };
