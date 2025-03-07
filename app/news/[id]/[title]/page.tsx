@@ -51,7 +51,18 @@ export default function NewsDetailPage() {
       setOtherNews(news.filter((item) => item._id !== id));
     }
   }, [news, id]);
+
+  const ArticleContent = ({ content }: { content: string }) => {
+    useEffect(() => {
+      // Ensure Twitter script is loaded on client side
+      const script = document.createElement("script");
+      script.src = "https://platform.twitter.com/widgets.js";
+      script.async = true;
+      document.body.appendChild(script);
+    }, []);
   
+    return <div dangerouslySetInnerHTML={{ __html: content }} />;
+  };
   
   // URL for sharing
   const shareUrl = typeof window !== "undefined" ? window.location.href : "";
@@ -91,7 +102,7 @@ export default function NewsDetailPage() {
           </div>
           
           
-          <div dangerouslySetInnerHTML={{ __html: selectedNews?.content as string }}></div>
+          <ArticleContent content={selectedNews?.content}/>
           <div className="flex flex-wrap gap-2 mb-6 mt-4">
             {selectedNews?.tags.map((tag, index) => (
               <span
