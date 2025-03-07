@@ -7,7 +7,7 @@ import ShareButton from "@/components/ShareButton";
 import { useEffect, useState } from "react";
 import { News } from "@/types";
 import LocaleDate from "@/components/LocaleDate";
-import Loading from "../../Loading";
+import axios from "axios";
 
 // Main component
 export default function NewsDetailPage() {
@@ -18,10 +18,17 @@ export default function NewsDetailPage() {
   const [selectedNews, setSelectedNews] = useState<News|null>(null);
   const [otherNews, setOtherNews] = useState<News[]|null>([]);
 
+  useEffect(()=>{
+    const increaseClick = async () => {
+      await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/news/${id}/click`,)
+    }
+    increaseClick()
+  }, [id])
+
   // Fetch news data
   const fetchNews = async () => {
     // Fetch news data from the backend
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/news?limit=8`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/news?limit=20`);
     const data = await response.json();
     setNews(data.news);
   };
