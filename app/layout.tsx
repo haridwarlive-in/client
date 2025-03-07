@@ -38,9 +38,10 @@ export default function RootLayout({
           `}
           
         </Script>
+        <Script async src="https://platform.twitter.com/widgets.js"></Script>
 
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4570020009822816"
-     crossOrigin="anonymous"></script>
+        <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4570020009822816"
+     crossOrigin="anonymous"></Script>
       </head>
       <body className={poppins.className}>
         <Navbar/>
