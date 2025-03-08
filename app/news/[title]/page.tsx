@@ -20,18 +20,11 @@ declare global {
 // Main component
 export default function NewsDetailPage() {
   const params = useParams();
-  const id = params.id;
+  const title = params.title;
   
   const [news, setNews] = useState<News[]>([]);
   const [selectedNews, setSelectedNews] = useState<News | null>(null);
   const [otherNews, setOtherNews] = useState<News[] | null>([]);
-
-  useEffect(() => {
-    const increaseClick = async () => {
-      await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/news/${id}/click`);
-    };
-    increaseClick();
-  }, [id]);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -41,20 +34,23 @@ export default function NewsDetailPage() {
     };
 
     const fetchSelectedNews = async () => {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/news/${id}`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/news/title/${title}`);
       const data = await response.json();
-      setSelectedNews(data);
+      setSelectedNews(data[0]);
+      const id = data[0]._id;
+      await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/news/${id}/click`);
+
     };
 
     fetchNews();
     fetchSelectedNews();
-  }, [id]);
+  }, [title]);
 
   useEffect(() => {
     if (news.length > 0) {
-      setOtherNews(news.filter((item) => item._id !== id));
+      setOtherNews(news.filter((item) => item.urlTitle !== title));
     }
-  }, [news, id]);
+  }, [news, title]);
 
   // Ensure Twitter script runs after content update
   useEffect(() => {

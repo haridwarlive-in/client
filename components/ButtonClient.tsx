@@ -9,7 +9,7 @@ const ButtonClient = ({id, allowClick=true, title}: {id: string, allowClick?: bo
   
   const handleClick = async () => {
     if (allowClick) await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/news/${id}/click`);
-    router.push(`/news/${id}/${title}`);
+    router.push(`/news/${title}`);
   };
   return (
     <Button variant="link" className="text-blue-600 px-0"
