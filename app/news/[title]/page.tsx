@@ -47,13 +47,11 @@ export default function NewsDetailPage() {
   }, [title]);
 
   useEffect(() => {
-    console.log("title: " + encodeURIComponent(title as string))
     if (news.length > 0) {
-      setOtherNews(news.filter((item) => encodeURIComponent(item.urlTitle) !== encodeURIComponent(title as string)));
+      setOtherNews(news.filter((item) => decodeURIComponent(item.urlTitle) !== decodeURIComponent(title as string)));
     }
     
   }, [news, title]);
-  console.log("urltitle: " + (otherNews && otherNews[0] ? otherNews[0].urlTitle : ""))
 
   // Ensure Twitter script runs after content update
   useEffect(() => {
