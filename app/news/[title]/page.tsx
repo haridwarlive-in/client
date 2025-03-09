@@ -148,7 +148,7 @@ export default function NewsDetailPage() {
         <ul className="space-y-4">
           {otherNews?.map((item) => (
             <li key={item._id}>
-              <Link href={`/news/${item._id}/${item.urlTitle}`} className="flex items-center gap-4">
+              <Link href={`/news/${item.urlTitle}`} className="flex items-center gap-4">
                 <Image
                   src={item.image as string ?? ""}
                   alt={item.title}
