@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { News } from "@/types";
 import LocaleDate from "@/components/LocaleDate";
 import axios from "axios";
+import { headers } from "next/headers";
 declare global {
   interface Window {
     twttr?: {
@@ -34,8 +35,12 @@ export default function NewsDetailPage() {
     };
 
     const fetchSelectedNews = async () => {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/news/title/${encodeURIComponent(title as string)}`);
-      const data = await response.json();
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/news/title`,
+        {
+          urlTitle: encodeURIComponent(title as string)
+        }
+      );
+      const data = response.data;
       setSelectedNews(data[0]);
       const id = data[0]._id;
       await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/news/${id}/click`);
