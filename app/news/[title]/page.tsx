@@ -37,7 +37,7 @@ export default function NewsDetailPage() {
     const fetchSelectedNews = async () => {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/news/title/${title}`)
       const data = await response.json();
-      setSelectedNews(data)
+      setSelectedNews(data[0])
     }
     fetchNews()
     fetchSelectedNews();
