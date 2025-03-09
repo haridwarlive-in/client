@@ -48,7 +48,7 @@ export default function NewsDetailPage() {
 
   useEffect(() => {
     if (news.length > 0) {
-      setOtherNews(news.filter((item) => item.urlTitle !== title));
+      setOtherNews(news.filter((item) => encodeURIComponent(item.urlTitle) !== encodeURIComponent(title as string)));
     }
   }, [news, title]);
 
