@@ -84,6 +84,7 @@ async function NewsPage(props: Props) {
                     placeholder="blur"
                     blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkAAIAAAoAAv/lxKUAAAAASUVORK5CYII="
                     priority
+                    unoptimized
                     width={200}
                     height={100}
                   />

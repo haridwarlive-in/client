@@ -113,6 +113,7 @@ export default function NewsDetailPage() {
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkAAIAAAoAAv/lxKUAAAAASUVORK5CYII="
           width={1200}
           height={600}
+          unoptimized
         />
         {/* Share buttons */}
         <ShareButton url={shareUrl} />
@@ -152,6 +153,7 @@ export default function NewsDetailPage() {
                   alt={item.title}
                   className="w-16 h-16 object-cover rounded-md"
                   priority
+                  unoptimized
                   placeholder="blur"
                   blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkAAIAAAoAAv/lxKUAAAAASUVORK5CYII="
                   width={64}
