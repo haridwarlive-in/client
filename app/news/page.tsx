@@ -178,6 +178,7 @@ async function NewsPage(props: Props) {
                     alt={`Image for ${news.title}`}
                     className="w-full h-48 object-cover"
                     priority
+                    unoptimized
                     placeholder="blur"
                     blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkAAIAAAoAAv/lxKUAAAAASUVORK5CYII="
                     width={200}

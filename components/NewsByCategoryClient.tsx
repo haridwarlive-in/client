@@ -23,6 +23,7 @@ const NewsByCategory = ({news, category}: {news: News[], category: string}) => {
               alt={`Image for ${item.title}`}
               className="w-full h-24 md:h-48 object-cover"
               priority
+              unoptimized
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkAAIAAAoAAv/lxKUAAAAASUVORK5CYII="
               width={200}
