@@ -52,6 +52,7 @@ export default function TempleDetailPage() {
           alt={temple?.title as string}
           className="w-full h-96 object-cover rounded-md"
           priority
+          unoptimized
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkAAIAAAoAAv/lxKUAAAAASUVORK5CYII="
           width={1200}
@@ -101,6 +102,7 @@ export default function TempleDetailPage() {
                   alt={item.title}
                   className="w-16 h-16 object-cover rounded-md"
                   priority
+                  unoptimized
                   placeholder="blur"
                   blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkAAIAAAoAAv/lxKUAAAAASUVORK5CYII="
                   width={64}

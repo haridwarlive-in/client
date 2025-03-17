@@ -15,7 +15,7 @@ const BreakingNewsClient = ({ breakingNews }: { breakingNews: News[] }) => {
             {breakingNews.map((headline) => (
               <Link
                 key={headline._id}
-                href={`/news/${headline._id}`}
+                href={`/news/${headline.urlTitle}`}
                 className="hover:underline text-sm whitespace-nowrap cursor-pointer font-semibold px-4"
                 aria-label={`Read more about: ${headline.title}`}
               >
