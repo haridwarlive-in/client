@@ -57,6 +57,7 @@ export default function Temples() {
                 alt={temple.title}
                 className="w-full max-md:h-30 h-48 object-cover"
                 loading="lazy"
+                unoptimized
                 width={200}
                 height={100}
               />
