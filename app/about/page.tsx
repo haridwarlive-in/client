@@ -14,6 +14,7 @@ export default function AboutHaridwar() {
           layout="fill"
           objectFit="cover"
           className="absolute inset-0"
+          unoptimized
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/80" />
         <div className="relative px-6 md:px-20 h-full flex flex-col justify-center text-left">
@@ -43,6 +44,7 @@ export default function AboutHaridwar() {
               width={1000}
               height={500}
               className="rounded-lg"
+              unoptimized
             />
           </div>
           <div className="mt-12">
@@ -74,6 +76,7 @@ export default function AboutHaridwar() {
               width={500}
               height={200}
               className="rounded-lg"
+              unoptimized
             />
           </div>
           

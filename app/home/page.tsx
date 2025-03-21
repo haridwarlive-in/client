@@ -72,6 +72,7 @@ export default function Home() {
             className="w-full h-full object-cover"
             height={1080}
             width={1920}
+            unoptimized
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/80" />
         </div>
@@ -132,6 +133,7 @@ export default function Home() {
                 className="md:rounded-l-3xl max-md:rounded-t-3xl"
                 width={1470}
                 height={980}
+                unoptimized
               />
             </div>
             <div className="max-md:p-4">
@@ -193,6 +195,7 @@ export default function Home() {
                         alt={temple.title}
                         layout="fill"
                         className="object-cover rounded-t-lg"
+                        unoptimized
                       />
                     </div>
                     <CardContent className="p-2 text-center rounded-b-lg bg-[#343333] text-white">
@@ -239,6 +242,7 @@ export default function Home() {
                       alt={news.title}
                       layout="fill"
                       className="object-cover rounded-t-lg"
+                      unoptimized
                     />
                   </div>
                   <CardContent className="bg-[#343333] rounded-b-lg text-white p-4">
@@ -268,6 +272,7 @@ export default function Home() {
                       alt={news.title}
                       layout="fill"
                       className="object-cover rounded-t-lg"
+                      unoptimized
                     />
                   </div>
                   <CardContent className="bg-[#343333] rounded-b-lg text-white p-4">
@@ -345,6 +350,7 @@ export default function Home() {
                       alt={hotel.title}
                       layout="fill"
                       className="object-cover transition-all duration-500 group-hover:scale-110"
+                      unoptimized
                     />
                   </div>
                   <CardContent className="bg-[#343333] h-full rounded-b-lg text-white p-4">
