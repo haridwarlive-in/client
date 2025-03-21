@@ -7,7 +7,6 @@ import ShareButton from "@/components/ShareButton";
 import { useEffect, useState } from "react";
 import { News } from "@/types";
 import LocaleDate from "@/components/LocaleDate";
-import axios from "axios";
 
 declare global {
   interface Window {
@@ -45,7 +44,7 @@ export default function NewsDetailPage() {
 
   useEffect(() => {
     if (news.length > 0) {
-      setOtherNews(news.filter((item) => decodeURIComponent(item.urlTitle) !== decodeURIComponent(title as string)));
+      setOtherNews(news.filter((item) => (item.urlTitle) !== (title as string)));
     }
     
   }, [news, title]);
