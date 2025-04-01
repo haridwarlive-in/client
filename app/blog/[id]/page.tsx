@@ -164,7 +164,7 @@ const blogs = [
   
       <p>For those visiting Haridwar, a dip in the Ganga is not merely a ritual; it is an experience that offers a sense of peace and spiritual awakening. The river’s sacredness, beauty, and significance make it a central element of Haridwar’s identity, and it continues to inspire devotion and reverence in those who visit.</p>
     `,
-    "image": "https://images.unsplash.com/photo-1725600090866-dc591ddf4957?q=80&w=2367&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    "image": "https://images.unsplash.com/photo-1709078274279-12a6473bd4ab?q=80&w=3171&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   }
   
 ];
