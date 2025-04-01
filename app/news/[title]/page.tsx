@@ -99,7 +99,7 @@ export default function NewsDetailPage() {
   }
 
   return (
-    <div className="container mx-auto px-3 pt-32 pb-4 flex flex-col lg:flex-row gap-8">
+    <div className="container mx-auto px-3 md:pt-32 pb-4 flex flex-col lg:flex-row gap-8">
       {/* Main Content */}
       <div className="lg:w-2/3">
         <h1 className="md:text-4xl text-2xl font-semibold mb-4">{selectedNews?.title}</h1>

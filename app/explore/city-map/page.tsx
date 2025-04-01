@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const CityMap = () => {
   return (
-    <div className="bg-gray-100 py-20 pt-36 min-h-screen">
+    <div className="bg-gray-100 py-20 md:pt-36 min-h-screen">
       <div className="container mx-auto px-4 py-10 pt-4 max-w-3xl">
         <div className="relative w-full">
           <div className="mb-4 flex items-center justify-center text-[#343333] text-5xl max-md:text-2xl font-bold">
