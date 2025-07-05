@@ -105,7 +105,7 @@ async function NewsPage(props: Props) {
                     <ButtonClient id={news[0]._id} title={news[0].urlTitle} />
                   </CardContent>
                 </Card>
-                <AdvertisementSlider />
+                <div className="lg:hidden"><AdvertisementSlider /></div>
                 {/* Right-side Articles (3 articles) placed below the main article */}
               <div className="grid col-span-2 lg:grid-cols-1 gap-2 md:gap-2">
                 {news.slice(1, 4).map((item: News, index: number) => (
@@ -163,6 +163,7 @@ async function NewsPage(props: Props) {
                   </Card>
                 ))}
               </div>
+              <div className="hidden"><AdvertisementSlider /></div>
             </div>
             </div>
 
