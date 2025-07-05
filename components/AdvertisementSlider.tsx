@@ -71,7 +71,7 @@ export default function AdvertisementSlider() {
         </div>
       </a>
 
-      <div className="w-fit rounded-full p-2"><h2 className="text-md max-md:text-sm font-bold text-red-600 animate-pulse"><a href="tel:+916395438784">Contact for advertisements: +91 6395438784</a></h2></div>
+      <div className="w-fit rounded-full p-2"><h2 className="text-md max-md:text-sm font-bold text-red-600 animate-pulse"><a href="tel:+916395438784">Contact for advertisements: +91 6395438784. Click to Call Now!</a></h2></div>
 
     </div>
   );
