@@ -100,7 +100,7 @@ export default function NewsDetailPage() {
   }
 
   return (
-    <div className="container mx-auto px-3 md:pt-32 pt-20 pb-4 flex flex-col lg:flex-row gap-8">
+    <div className="container mx-auto px-3 md:pt-32 pt-24 pb-4 flex flex-col lg:flex-row gap-8">
       {/* Main Content */}
       <div className="lg:w-2/3">
       <AdvertisementSlider />
