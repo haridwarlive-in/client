@@ -55,8 +55,9 @@ export default function AdvertisementSlider() {
   const ad = ads[current];
 
   return (
-    <div className="mt-8">
-      <h2 className="text-xl font-bold mb-4">Sponsored</h2>
+    <div className="my-10">
+      <div className="bg-yellow-200 rounded-full p-4"><h2 className="text-xl font-bold mb-4">Sponsored</h2></div>
+      
       <a href={ad.url} target="_blank" rel="noopener noreferrer">
         <div className="w-full aspect-video overflow-hidden rounded-lg border hover:shadow transition-all duration-300">
           <Image
@@ -69,9 +70,6 @@ export default function AdvertisementSlider() {
           />
         </div>
       </a>
-      <div className="mt-2 text-sm text-gray-600 text-center">
-        {ad.title}
-      </div>
     </div>
   );
 }
