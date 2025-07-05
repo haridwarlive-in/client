@@ -55,7 +55,7 @@ export default function AdvertisementSlider() {
   const ad = ads[current];
 
   return (
-    <div className="my-10">
+    <div className="my-10 bg-gray-100">
       <div className="w-fit rounded-full mb-2 p-2"><h2 className="text-md max-md:text-sm font-medium">Sponsored</h2></div>
       
       <a href={ad.url} target="_blank" rel="noopener noreferrer">
