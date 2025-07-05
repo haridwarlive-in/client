@@ -68,7 +68,6 @@ async function NewsPage(props: Props) {
           Latest News from <span className="font-bold">Haridwar</span>
         </h1>
         <BreakingNews/>
-        <AdvertisementSlider />
 
         {/* Fallback Content */}
         {news.length === 0 ? (
@@ -106,6 +105,7 @@ async function NewsPage(props: Props) {
                     <ButtonClient id={news[0]._id} title={news[0].urlTitle} />
                   </CardContent>
                 </Card>
+                <AdvertisementSlider />
                 {/* Right-side Articles (3 articles) placed below the main article */}
               <div className="grid col-span-2 lg:grid-cols-1 gap-2 md:gap-2">
                 {news.slice(1, 4).map((item: News, index: number) => (
