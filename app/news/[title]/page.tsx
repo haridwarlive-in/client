@@ -7,6 +7,7 @@ import ShareButton from "@/components/ShareButton";
 import { useEffect, useState } from "react";
 import { News } from "@/types";
 import LocaleDate from "@/components/LocaleDate";
+import AdvertisementSlider from "@/components/AdvertisementSlider";
 
 declare global {
   interface Window {
@@ -102,6 +103,7 @@ export default function NewsDetailPage() {
     <div className="container mx-auto px-3 md:pt-32 pt-28 pb-4 flex flex-col lg:flex-row gap-8">
       {/* Main Content */}
       <div className="lg:w-2/3">
+      <AdvertisementSlider />
         <h1 className="md:text-4xl text-2xl font-semibold mb-4">{selectedNews?.title}</h1>
         <Image
           src={selectedNews?.image as string ?? ""}
