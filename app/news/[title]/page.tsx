@@ -104,7 +104,7 @@ export default function NewsDetailPage() {
       {/* Main Content */}
       <div className="lg:w-2/3">
       <AdvertisementSlider />
-        <h1 className="md:text-4xl text-2xl font-semibold mb-4">{selectedNews?.title}</h1>
+        <a href="https://www.instagram.com/haridwarlive.in" target="_blank"><h1 className="md:text-4xl text-2xl font-semibold mb-4">{selectedNews?.title}</h1></a>
         <Image
           src={selectedNews?.image as string ?? ""}
           alt={selectedNews?.title as string}
@@ -131,6 +131,8 @@ export default function NewsDetailPage() {
           </div>
 
           <ArticleContent content={selectedNews?.content} />
+
+          <AdvertisementSlider />
 
           <div className="flex flex-wrap gap-2 mb-6 mt-4">
             {selectedNews?.tags.map((tag, index) => (
@@ -167,6 +169,7 @@ export default function NewsDetailPage() {
               </Link>
             </li>
           ))}
+          <AdvertisementSlider />
         </ul>
       </div>
     </div>
