@@ -9,6 +9,7 @@ import NewsByCategoryClient from "@/components/NewsByCategoryClient";
 import { Suspense } from "react";
 import LocaleDate from "@/components/LocaleDate";
 import ButtonClient from "@/components/ButtonClient";
+import AdvertisementSlider from "@/components/AdvertisementSlider";
 
 export const revalidate = 10
 export const dynamic = "force-dynamic";
@@ -67,6 +68,7 @@ async function NewsPage(props: Props) {
           Latest News from <span className="font-bold">Haridwar</span>
         </h1>
         <BreakingNews/>
+        <AdvertisementSlider />
 
         {/* Fallback Content */}
         {news.length === 0 ? (
@@ -163,6 +165,8 @@ async function NewsPage(props: Props) {
               </div>
             </div>
             </div>
+
+            <AdvertisementSlider />
 
             {news.length>4 && <h1 className="text-md md:text-xl font-semibold mt-8">Latest Top News</h1>}
             {/* More Articles (Grid below) */}
