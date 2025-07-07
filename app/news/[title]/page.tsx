@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { News } from "@/types";
 import LocaleDate from "@/components/LocaleDate";
 import AdvertisementSlider from "@/components/AdvertisementSlider";
+import { Button } from "@/components/ui/button";
 
 declare global {
   interface Window {
@@ -22,38 +23,45 @@ declare global {
 export default function NewsDetailPage() {
   const params = useParams();
   const title = params.title;
-  
+
   const [news, setNews] = useState<News[]>([]);
   const [selectedNews, setSelectedNews] = useState<News | null>(null);
   const [otherNews, setOtherNews] = useState<News[] | null>([]);
 
   useEffect(() => {
     const fetchNews = async () => {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/news?limit=10`);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/news?limit=10`
+      );
       const data = await response.json();
       setNews(data.news);
     };
 
     const fetchSelectedNews = async () => {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/news/title/${(title as string)}`)
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/news/title/${title as string}`
+      );
       const data = await response.json();
-      setSelectedNews(data[0])
-    }
-    fetchNews()
+      setSelectedNews(data[0]);
+    };
+    fetchNews();
     fetchSelectedNews();
   }, [title]);
 
   useEffect(() => {
     if (news.length > 0) {
-      setOtherNews(news.filter((item) => (item.urlTitle) !== (title as string)));
+      setOtherNews(news.filter((item) => item.urlTitle !== (title as string)));
     }
-    
   }, [news, title]);
 
   // Ensure Twitter script runs after content update
   useEffect(() => {
     if (selectedNews?.content.includes("twitter-tweet")) {
-      if (!document.querySelector('script[src="https://platform.twitter.com/widgets.js"]')) {
+      if (
+        !document.querySelector(
+          'script[src="https://platform.twitter.com/widgets.js"]'
+        )
+      ) {
         const script = document.createElement("script");
         script.src = "https://platform.twitter.com/widgets.js";
         script.async = true;
@@ -72,9 +80,13 @@ export default function NewsDetailPage() {
           window.twttr.widgets.load();
           return;
         }
-  
+
         // Check if script is already present
-        if (!document.querySelector('script[src="https://platform.twitter.com/widgets.js"]')) {
+        if (
+          !document.querySelector(
+            'script[src="https://platform.twitter.com/widgets.js"]'
+          )
+        ) {
           const script = document.createElement("script");
           script.src = "https://platform.twitter.com/widgets.js";
           script.async = true;
@@ -86,10 +98,10 @@ export default function NewsDetailPage() {
           document.body.appendChild(script);
         }
       };
-  
+
       loadTwitterScript();
     }, [content]); // Reload script if content updates
-  
+
     return <div dangerouslySetInnerHTML={{ __html: content }} />;
   };
 
@@ -103,10 +115,22 @@ export default function NewsDetailPage() {
     <div className="container mx-auto px-3 md:pt-32 pt-24 pb-4 flex flex-col lg:flex-row gap-8">
       {/* Main Content */}
       <div className="lg:w-2/3">
-      <AdvertisementSlider />
-        <a href="https://www.instagram.com/haridwarlive.in" target="_blank"><h1 className="md:text-4xl text-2xl font-semibold mb-4">{selectedNews?.title}</h1></a>
+        <AdvertisementSlider />
+        <a
+          href="https://www.instagram.com/haridwarlive.in"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button className="my-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 text-white font-semibold px-6 py-3 rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+            Follow us on Instagram @haridwarlive.in
+          </Button>
+        </a>
+
+        <h1 className="md:text-4xl text-2xl font-semibold mb-4">
+          {selectedNews?.title}
+        </h1>
         <Image
-          src={selectedNews?.image as string ?? ""}
+          src={(selectedNews?.image as string) ?? ""}
           alt={selectedNews?.title as string}
           className="w-full h-96 object-cover rounded-md"
           priority
@@ -136,7 +160,10 @@ export default function NewsDetailPage() {
 
           <div className="flex flex-wrap gap-2 mb-6 mt-4">
             {selectedNews?.tags.map((tag, index) => (
-              <span key={index} className="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded">
+              <span
+                key={index}
+                className="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded"
+              >
                 {tag}
               </span>
             ))}
@@ -150,9 +177,12 @@ export default function NewsDetailPage() {
         <ul className="space-y-4">
           {otherNews?.map((item) => (
             <li key={item._id}>
-              <Link href={`/news/${item.urlTitle}`} className="flex items-center gap-4">
+              <Link
+                href={`/news/${item.urlTitle}`}
+                className="flex items-center gap-4"
+              >
                 <Image
-                  src={item.image as string ?? ""}
+                  src={(item.image as string) ?? ""}
                   alt={item.title}
                   className="w-16 h-16 object-cover rounded-md"
                   priority
@@ -163,8 +193,12 @@ export default function NewsDetailPage() {
                   height={64}
                 />
                 <div>
-                  <h3 className="text-lg max-md:text-sm font-medium">{item.title}</h3>
-                  <div className="text-sm text-gray-500">{new Date(item.date).toLocaleDateString()}</div>
+                  <h3 className="text-lg max-md:text-sm font-medium">
+                    {item.title}
+                  </h3>
+                  <div className="text-sm text-gray-500">
+                    {new Date(item.date).toLocaleDateString()}
+                  </div>
                 </div>
               </Link>
             </li>
